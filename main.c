@@ -80,7 +80,6 @@ void mostrarNumero2(uint8_t numero);
 
 
 /* Mostrar números del contador de décadas del Jugador 1 */
-
 void mostrarNumero1(uint8_t numero)
 {
     /* Apagado */
@@ -89,7 +88,7 @@ void mostrarNumero1(uint8_t numero)
     HAL_GPIO_WritePin(J1LED3_GPIO_Port, J1LED3_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(J1LED4_GPIO_Port, J1LED4_Pin, GPIO_PIN_RESET);
 
-    /* Muestra número */
+    /* Número */
     switch(numero)
     {
         case 0:
@@ -116,8 +115,6 @@ void mostrarNumero1(uint8_t numero)
     }
 }
 
-
-
 /* Mostrar números del contador de décadas del Jugador 2 */
 void mostrarNumero2(uint8_t numero)
 {
@@ -127,7 +124,7 @@ void mostrarNumero2(uint8_t numero)
     HAL_GPIO_WritePin(J2LED3_GPIO_Port, J2LED3_Pin, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(J2LED4_GPIO_Port, J2LED4_Pin, GPIO_PIN_RESET);
 
-    /* Muestra número */
+    /* Número */
     switch(numero)
     {
         case 0:
@@ -205,7 +202,7 @@ int main(void)
 	      {
 	          SeAc = 0;
 
-	          /* Reiniciar carrera */
+	          /* Reinicia*/
 	          contadorJ1 = 0;
 	          contadorJ2 = 0;
 	          ganador = 0;
@@ -216,17 +213,15 @@ int main(void)
 	          semaforo();
 	      }
 
-	      /* Enviar mensaje del ganador */
+	      /* Mensaje Ganador */
 	      if(ganador == 1)
 	      {
 	          ganador = 0;
-
 	          HAL_UART_Transmit(&huart2, (uint8_t*)"Jugador 1 gana!\r\n", 18, HAL_MAX_DELAY);
 	      }
 	      if(ganador == 2)
 	      {
 	          ganador = 0;
-
 	          HAL_UART_Transmit(&huart2, (uint8_t*)"Jugador 2 gana!\r\n", 18, HAL_MAX_DELAY);
 	      }
 
@@ -421,8 +416,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
         {
             SeAc = 1;
         }
-
-        /* Volver a escuchar UART */
         HAL_UART_Receive_IT(&huart2, &datoUART, 1);
     }
 }
